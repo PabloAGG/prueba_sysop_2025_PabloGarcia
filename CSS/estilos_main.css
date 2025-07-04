@@ -742,6 +742,14 @@ body.dark-mode .current-image-container {
 body.dark-mode .current-image-container h5 {
     color: #bddced;
 }
+#vercontraBtn{
+    background-color: transparent;
+    border: none;
+    color: #0e499b;
+    cursor: pointer;
+    font-size: 1em;
+    transition: color 0.3s ease;
+}
 
 .current-image {
     width: 80px;

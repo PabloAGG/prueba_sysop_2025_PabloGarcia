@@ -16,9 +16,10 @@
             <label for="user_email">Correo</label>
         </div>
     <div class="contenedor-input">
-       <span class="icono"> <i class="fa-solid fa-lock"></i></span>
+       <span class="icono"><button type="button" title="ver contraseña" id="vercontraBtn"><i class="fa-solid fa-eye"></i></button></span>
         <input type="password" id="password_user" name="password_user" required>
          <label for="password_user">Contraseña:</label>
+      
     </div>
      <div class="btn-container">
     <button type="submit" class="btnStaff base">Iniciar Sesión</button>

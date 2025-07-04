@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector("form");
 
 
+
     telefonoInput.addEventListener('input', () => {
         const telefonoRegex = /^\d{10}$/; // Asegura que el número tenga 10 digitos
 

@@ -1,0 +1,5 @@
+//CREDENCIALES STAFFHUB
+
+usuario:Admin
+correo: admin@gmail.com
+pass: Admin_1234
