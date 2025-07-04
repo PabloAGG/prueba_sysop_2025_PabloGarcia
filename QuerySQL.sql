@@ -9,5 +9,8 @@ fechaNac date not null comment 'Natalcio del usuario',
 rfc nvarchar(15) not null comment 'Registro Federal de Contribuyentes asociado al usuario',
 correo nvarchar(255) not null unique comment 'Credencial del usuario para autenticacion',
 contraseña nvarchar(255) not null comment'Contraseña hasheada del usuario',
-tipo enum('Administrador','empleado','Ejecutivo')
+tipo enum('Administrador','empleado','Ejecutivo'),
+imgPath nvarchar(255) null comment'avatar del usuario',
+estado boolean default 1 comment'estado para verificar el usuario'
 );
+alter table usuarios add column estado boolean default 1;

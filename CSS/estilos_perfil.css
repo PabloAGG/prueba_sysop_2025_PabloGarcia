@@ -1,0 +1,42 @@
+.Data_user{
+   display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0;
+    padding: 20px;
+    gap: 20px;
+    border-radius: 10px;
+    max-width: 800px;
+}
+body.dark-mode .Data_user {
+    background-color: #333;
+    color: #fff;
+}
+.imgSecc img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.info h4 {
+    margin: 0;
+    font-size: 1.2em;
+    font-weight:bold;
+}
+.Perfil-cont{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+
+}

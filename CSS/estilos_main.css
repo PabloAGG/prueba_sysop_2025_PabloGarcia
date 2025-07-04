@@ -1,5 +1,443 @@
-:root{
-    color-scheme: light dark;
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+}
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: #f0f0f0;
+    color: #1a1a1a;
+    margin: 0;
+    padding: 0px;
+    gap: 20px;
+}
+body.dark-mode {
+    background-color: #100f19; 
+    color: #bddced; 
+}
+main {
+    padding: 90px 10px;
+    width: 100%;
+    height: 100%;
+ 
+}
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background-color: #bddced;
+    color: #0e1228;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    z-index: 1000; /* Asegura que el header esté por encima de otros elementos */
+}
+body.dark-mode header{
+
+    background-color: #0e1228;
+    color: #bddced;
+
+}
+.logo-img{
+    width: 65px;
+    height: 65px;
+    object-fit: cover;
+}
+.logo_link:hover{
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+    transform: scale(1.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease
 }
 
+/* --- Estilos mejorados para el botón de tema --- */
+.theme-toggle-btn {
+    background-color: #0e1228;
+    color: #FFD700; /* Color amarillo para el ícono de luna */
+    border: 2px solid #0e1228;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.2em;
+}
 
+.theme-toggle-btn:hover {
+    background-color: #fff;
+    color: #0e1228;
+    transform: scale(1.1) rotate(15deg);
+}
+
+body.dark-mode .theme-toggle-btn {
+    background-color: #cde2ff;
+    color: #f39c12; /* Color naranja para el ícono de sol */
+    border-color: #cde2ff;
+}
+
+body.dark-mode .theme-toggle-btn:hover {
+    background-color: #0e1228;
+    color: #f39c12;
+    transform: scale(1.1) rotate(-15deg);
+}
+/* --- Fin de estilos para el botón de tema --- */
+
+
+footer{
+  background: none;
+  display: flex;
+  bottom: 0;
+  left: 0;
+  flex-direction: row;
+    justify-content: space-around;
+    color: gray;
+    text-align: center;
+    padding: 20px 0;
+    position:relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.btnStaff {
+    border: none;
+    padding: 12px 25px; /* Aumentamos el padding */
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em; /* Hacemos la fuente un poco más grande */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: inline-block; /* Aseguramos que el botón se comporte como bloque en línea */
+}
+
+/* Botón base (azul) */
+.btnStaff.base {
+    background-color: #0e499b; /* Azul */
+    color: #bddced; /* Color de texto claro */
+}
+.btnStaff.base:hover {
+    background-color: #0c3f7a;
+    transform: translateY(-2px); /* Efecto de elevación */
+}
+
+/* Botón logout (rojo) */
+.btnStaff.logout {
+    background-color: #dc3545; /* Rojo para el botón de logout */
+    color: #fff; /* Color de texto blanco */
+}
+.btnStaff.logout:hover {
+    background-color: #b02a2a; /* Rojo más oscuro al pasar el mouse */
+    transform: translateY(-2px); /* Efecto de elevación */
+}
+
+/* Estilo por defecto si no tiene clase específica */
+.btnStaff:not(.base):not(.logout) {
+    background-color: #0e499b;
+    color: #bddced;
+}
+.btnStaff:not(.base):not(.logout):hover {
+    background-color: #0c3f7a;
+    transform: translateY(-2px);
+}
+/* Nuevo contenedor para centrar el botón */
+.btn-container {
+    text-align: center;
+    margin-top: 30px; /* Más espacio superior para separarlo */
+    padding-top: 20px; /* Padding adicional para mayor separación */
+    position: relative; /* Posicionamiento relativo para asegurar que esté en el flujo normal */
+    z-index: 10; /* Z-index más alto para que esté por encima de la imagen */
+}
+
+.contenedor-input{
+    position:relative;
+    width: 100%;
+    height: 50px;
+    border-bottom: 2px solid antiquewhite;
+    margin: 30px 0;
+}
+
+/* Contenedor especial para la imagen */
+.contenedor-input.image-upload {
+    height: auto; /* Altura automática para ajustarse al contenido */
+    padding-bottom: 20px; /* Espacio inferior para separar del botón */
+    margin-bottom: 20px; /* Margen inferior para separar del botón */
+    border-bottom: none; /* Sin borde inferior para este contenedor especial */
+}
+.contenedor-input.image-upload label{
+    top: 40%;
+}
+.contenedor-input label{
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    font-size: 1em;
+    font-weight: 600;
+    pointer-events: none;
+    transition: .4s;
+    color:#1a1a1a;
+}
+body.dark-mode .contenedor-input label {
+    color: #bddced;
+}
+.contenedor-input input:placeholder-shown ~ label {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .contenedor-input input:not(:placeholder-shown) ~ label {
+    top: -5px;
+  }
+
+.contenedor-input input,
+.contenedor-input select {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    color:black;
+    padding: 0 35px 0 5px;
+}
+body.dark-mode .contenedor-input input,
+body.dark-mode .contenedor-input select {
+    color: #bddced;
+}
+
+body.dark-mode .contenedor-input select {
+    background-color: #100f19; 
+    border: 1px solid #bddced; 
+}
+.contenedor-input label.active {
+    top: -5px;
+    
+}
+
+.contenedor-input .icono {
+    position: absolute;
+    right: 15px;
+top: 5px;
+    font-size: 1.4em;
+    color: #0e499b;
+  
+}
+
+.notification-area {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    position: relative;
+    border: 1px solid transparent;
+    color: #fff; /* Color de texto por defecto */
+    font-size: 0.9em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Estilos específicos por tipo */
+.notification-area.success {
+    background-color: #28a745; /* Verde */
+    border-color: #28a745;
+}
+
+.notification-area.error {
+    background-color: #dc3545; /* Rojo */
+    border-color: #dc3545;
+}
+
+.info-area{
+  position: fixed;
+    bottom: 20px; /* Distancia desde el borde inferior de la pantalla */
+    right: 20px;  /* Distancia desde el borde derecho de la pantalla */
+
+    /* Estilos que ya tenías y están bien */
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid transparent;
+    color: #fff;
+    font-size: 0.9em;
+    background-color: rgba(235, 1, 57, .5);
+    display: none; 
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+   
+}
+
+/* Estilos para modo claro */
+body.light-mode .notification-area {
+     color: #333; /* Color de texto oscuro */
+}
+body.light-mode .notification-area.success {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+}
+body.light-mode .notification-area.error {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+}
+ body.light-mode .info-area {
+    background-color: #f9c2cf;
+    border-color: #f9c2cf;
+    color: rgb(235, 1, 57);
+}
+
+/* Botón opcional para cerrar */
+.notification-area .close-btn {
+    background: none;
+    border: none;
+    color: inherit;
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+    opacity: 0.7;
+    padding: 0 5px;
+}
+.notification-area .close-btn:hover {
+    opacity: 1;
+}
+
+/* Botón opcional para cerrar */
+.info-area .close-btn {
+    background: none;
+    border: none;
+    color: inherit;
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+    opacity: 0.7;
+    padding: 0 5px;
+}
+.info-area .close-btn:hover {
+    opacity: 1;
+}
+
+/* Nuevo contenedor para la previsualización de la imagen */
+.image-preview-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px; /* Espacio debajo de la imagen */
+    min-height: 0; /* Sin altura mínima para que se ajuste dinámicamente */
+    transition: all 0.3s ease; /* Transición suave */
+    overflow: visible; /* Cambiado de hidden a visible */
+    /* Removido z-index para que no tape otros elementos */
+}
+
+.image-preview-container.show {
+    min-height: 120px; /* Altura cuando se muestra la imagen */
+    margin-bottom: 20px;
+}
+
+#imgPerfil {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #0e499b; /* Borde azul más grueso */
+    padding: 3px; /* Espacio entre la imagen y el borde */
+    background-color: #fff;
+    transition: all 0.3s ease; /* Transición suave para la imagen */
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+#imgPerfil.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    justify-content: center;
+    gap: 20px;
+    transition: all 0.3s ease; /* Transición suave para el contenedor */
+    min-height: auto; /* Altura automática */
+    overflow: visible; /* Asegura que no se corten elementos */
+}
+
+body.dark-mode .form-container {
+  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.3);
+}
+.form-login-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    justify-content: center;
+    align-content: center;
+    gap: 20px;
+    transition: all 0.3s ease; /* Transición suave para el contenedor */
+    min-height: auto; /* Altura automática */
+    overflow: visible; /* Asegura que no se corten elementos */
+}
+
+body.dark-mode .form-login-container {
+  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.3);
+}
+.logo-icon{
+    width: 80px;
+    height: 80px;
+    object-fit: cover;  
+}
+/* Estilo para el input de archivo */
+.inputImgPerfil {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 2px dashed #0e499b;
+    border-radius: 5px;
+    background-color: transparent;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.inputImgPerfil:hover {
+    border-color: #0c3f7a;
+    background-color: rgba(14, 73, 155, 0.05);
+}
+
+body.dark-mode .inputImgPerfil {
+    border-color: #bddced;
+    color: #bddced;
+}
+
+body.dark-mode .inputImgPerfil:hover {
+    border-color: #cde2ff;
+    background-color: rgba(189, 220, 237, 0.05);
+}
+
+.secc-login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    height: 100%;
+}
+
+@media(max-width: 768px){
+    .form-container,.form-login-container{
+        width: 90%;
+        padding: 15px;
+    }
+}
