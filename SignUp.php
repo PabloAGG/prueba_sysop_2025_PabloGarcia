@@ -1,4 +1,11 @@
-<?php require_once'Components/Header.php'?>
+<?php 
+session_start();
+require_once 'Config/Db_conn.php';
+if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'Administrador') {
+    header('Location: Index.php');
+    exit();
+}
+require_once'Components/Header.php'?>
 
 <main>
      <div id="notification-area" class="notification-area" style="display: none;">
@@ -75,4 +82,4 @@
 </main>
 
 <script src="JS/validaciones.js"></script>
-<?php require_once'Components/footer.php'?>
+<?php require_once'Components/termino.php'?>

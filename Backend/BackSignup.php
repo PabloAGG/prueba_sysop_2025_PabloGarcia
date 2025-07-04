@@ -10,9 +10,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $rfc = mysqli_real_escape_string($conn, $_POST['rfc_usuario']);
     $telefono = mysqli_real_escape_string($conn, $_POST['telefono_usuario']);
 
-    $rutaDestino = "../img/";
-    $nombreArchivo = basename($_FILES["imgRuta"]["name"]);
-    $rutaFinal = $rutaDestino . uniqid() . "_" . $nombreArchivo;
 
     $check_query = "SELECT idUser FROM usuarios WHERE correo = ? AND estado=1";
      // Verificar si el nombre de usuario o el correo electrónico ya existen
@@ -34,17 +31,23 @@ if (empty($nombreCompleto) || empty($email) || empty($contraseña) || empty($fec
     }
 
     if(empty($_FILES["imgRuta"]["name"])) {
-     $rutaFinal = "img/default.webp"; // Ruta por defecto si no se sube una imagen
-    }else{
-
-    if(move_uploaded_file($_FILES["imgRuta"]["tmp_name"], $rutaFinal)) {
-        $rutaDestino = "img/";
-    $nombreArchivo = basename($_FILES["imgRuta"]["name"]);
-    $rutaFinal = $rutaDestino . uniqid() . "_" . $nombreArchivo;
+        $rutaFinal = "IMG/default.webp"; // Ruta por defecto si no se sube una imagen
     } else {
-        header("Location: ../SignUp.php?error=image_upload_error");
-        exit();
-}
+        // Crear la ruta final antes de mover el archivo
+        $rutaDestino = "../IMG/";
+        $nombreArchivo = basename($_FILES["imgRuta"]["name"]);
+        $uniqueId = uniqid(); // Generar UNA SOLA VEZ el ID único
+        $rutaCompleta = $rutaDestino . $uniqueId . "_" . $nombreArchivo;
+        $rutaFinal = "IMG/" . $uniqueId . "_" . $nombreArchivo; // Ruta relativa para la BD
+        
+        if(move_uploaded_file($_FILES["imgRuta"]["tmp_name"], $rutaCompleta)) {
+            // La imagen se ha subido correctamente
+            error_log("Imagen subida correctamente a: " . $rutaCompleta);
+            error_log("Ruta guardada en BD: " . $rutaFinal);
+        } else {
+            header("Location: ../SignUp.php?error=image_upload_error");
+            exit();
+        }
     }
 
  $query = "INSERT INTO usuarios (nombre, telefeno, fechaNac, rfc, correo, contraseña, tipo, imgPath)

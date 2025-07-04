@@ -43,6 +43,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 case 'empty_fields':
                     showNotification('Todos los campos son obligatorios.', 'error');
                     break;
+                case 'invalid_image_type':
+                    showNotification('Tipo de imagen no válido. Solo se permiten JPG, PNG, GIF y WEBP.', 'error');
+                    break;
+                case 'update_failed':
+                    showNotification('Error al actualizar el usuario.', 'error');
+                    break;
+                case 'not_authorized':
+                    showNotification('No tienes permisos para realizar esta acción.', 'error');
+                    break;
+                    case 'missing_id':
+                    showNotification('ID de usuario faltante. Por favor, verifica la URL.', 'error');
+                    break;
                 default:
                     // Opcional: manejar un error desconocido o no hacer nada
                     // console.warn('Error desconocido en URL:', error);
@@ -83,6 +95,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 case 'empty_fields':
                     alert('Todos los campos son obligatorios.');
                     break;
+                case 'invalid_image_type':
+                    alert('Tipo de imagen no válido. Solo se permiten JPG, PNG, GIF y WEBP.');
+                    break;
+                case 'update_failed':
+                    alert('Error al actualizar el usuario.');
+                    break;
+                case 'not_authorized':
+                    alert('No tienes permisos para realizar esta acción.');
+                    break;
                 default:
                     break;
             }
@@ -97,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     showNotification('Perfil actualizado correctamente.', 'success');
                     break;
                 case 'user_created':
-                    showNotification('Usuario creado correctamente. Por favor, inicia sesión.', 'success');
+                    showNotification('Usuario creado correctamente. Por favor, Comparte con el empleado sus credenciales.', 'success');
                     break;
                 case 'login_success':
                     if (username) {

@@ -48,6 +48,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Validación de Contraseña
     contraseñaInput.addEventListener('input', () => {
+         if (contraseñaInput.value === '') {
+            contraseñaInput.setCustomValidity("");
+            return;
+        }
         const contraseñaRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
         if (!contraseñaRegex.test(contraseñaInput.value)) {
             contraseñaInput.setCustomValidity("La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula, un número y un carácter especial.");
@@ -113,7 +117,7 @@ const fileInput = document.getElementById('imgRuta');
       
         // Validar términos y condiciones
         const terminos = document.querySelector('input[type="checkbox"]');
-        if (terminos && !terminos.checked) {
+        if (!terminos.checked) {
             alert('Debes aceptar los términos y condiciones para continuar.');
             isValid = false;
         }
@@ -131,7 +135,7 @@ const fileInput = document.getElementById('imgRuta');
                 const file = document.getElementById('imgRuta').files[0];
                 const imgPreview = document.getElementById('imgPerfil');
                 const container = document.querySelector('.image-preview-container');
-                
+                const imgPreviewContainer = document.querySelector('.current-image-container');
                 if (file) {
                     const reader = new FileReader();
                     reader.onload = function(e) {
@@ -141,7 +145,7 @@ const fileInput = document.getElementById('imgRuta');
                         container.classList.add('show');
                         imgPreview.classList.add('show');
                         imgPreview.style.display = 'block';
-                        
+                        imgPreviewContainer.style.display = 'none'; 
                         // Scroll suave hacia la imagen si es necesario
                         setTimeout(() => {
                             container.scrollIntoView({ 
